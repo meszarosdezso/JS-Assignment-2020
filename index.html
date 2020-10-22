@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SET JS | IBT7JS</title>
+    <meta
+      name="description"
+      content="SET Card game on the web | ELTE Web development assignment 2020"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <section id="landing-page">
+      <h1 class="display">Set</h1>
+
+      <section class="options">
+        <div class="option">
+          <span class="option-title">Nehézség</span>
+          <div class="switch">
+            <div
+              data-setting="level"
+              data-value="BEGINNER"
+              class="switch-option"
+            >
+              Kezdő
+            </div>
+            <div
+              data-setting="level"
+              data-value="ADVANCED"
+              class="switch-option active"
+            >
+              Haladó
+            </div>
+          </div>
+        </div>
+
+        <div class="option">
+          <span class="option-title">Játékmód</span>
+          <div class="switch">
+            <div
+              data-setting="mode"
+              data-value="TRAINING"
+              class="switch-option active"
+            >
+              Gyakorló
+            </div>
+            <div data-setting="mode" data-value="CONTEST" class="switch-option">
+              Verseny
+            </div>
+          </div>
+        </div>
+
+        <div class="option">
+          <span class="option-title">Egyéb</span>
+          <!-- TODO add other options -->
+          <div class="more-options">
+            <label for="tellSet"></label>
+            <label for="showSet"></label>
+            <label for="plus3"></label>
+          </div>
+        </div>
+
+        <div class="players">
+          <h4>Játékosok</h4>
+
+          <ul id="players"></ul>
+
+          <button id="add-player" class="secondary light">
+            Játékos hozzáadása
+          </button>
+          <br />
+        </div>
+      </section>
+      <br />
+
+      <button id="startBtn" class="light">Kezdés</button>
+    </section>
+
+    <script src="dist/app.js"></script>
+    <script src="dist/Player.js"></script>
+    <script src="dist/switch.js"></script>
+  </body>
+</html>

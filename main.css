@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik&family=Teko:wght@400;700&display=swap');
+
+:root {
+  --accent-green: #00a677;
+  --accent-red: #dc3d3d;
+  --accent-purple: #3900b5;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+body,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button {
+  font-family: Rubik, sans-serif;
+}
+
+.display {
+  font-family: Teko;
+}
+
+.green {
+  color: var(--accent-green);
+}
+.red {
+  color: var(--accent-red);
+}
+.purple {
+  color: var(--accent-purple);
+}
+
+button {
+  border-radius: 0.3rem;
+  background: var(--accent-purple);
+  padding: 0.4rem 0.8rem;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 0 0.5rem #0002;
+  transition: all 150ms ease-out;
+  cursor: pointer;
+}
+
+button:active {
+  opacity: 0.5;
+  transform: scale(0.96);
+}
+
+button.light {
+  background: white;
+  color: var(--accent-purple);
+}
+
+button.secondary {
+  border: 2px solid var(--accent-purple);
+  background: none;
+  color: var(--accent-purple);
+}
+
+button.secondary.light {
+  color: white;
+  border: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin: 1rem;
+}
+
+input {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  background: white;
+  border: none;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 2px solid white;
+  border-radius: 0.3rem;
+  overflow: hidden;
+}
+
+.switch-option {
+  padding: 0.5rem 1rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.switch-option:active {
+  background: #fff7;
+}
+
+.switch-option.active {
+  background: white;
+  color: var(--accent-purple);
+}
+
+#landing-page {
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--accent-purple), #140542);
+  color: white;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+#landing-page h1 {
+  font-size: 10vw;
+}
+
+.options {
+  margin-top: 1rem;
+}
+
+.option {
+  margin: 2rem auto;
+}
+
+.option-title {
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  font-family: Teko;
+}
+
+.players {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.players h4 {
+  margin-bottom: 1rem;
+}
+
+.players #players {
+  text-align: center;
+  list-style: none;
+}
+
+.players #players .player {
+  align-items: center;
+  position: relative;
+  margin-top: 1.4rem;
+  animation: playerAnim 500ms ease-out forwards;
+}
+
+@keyframes playerAnim {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+.players #players .player .player-number {
+  position: absolute;
+  left: -1rem;
+  top: -1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: white;
+  color: var(--accent-purple);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  border: 3px solid var(--accent-purple);
+  z-index: 2;
+}
+
+.players #players .player .player-name {
+  padding-left: 1rem;
+}
