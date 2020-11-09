@@ -12,6 +12,15 @@
   </head>
   <body>
     <section id="landing-page">
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://fejlesztojatekvilag.hu/uploaded/set_magyar_szabaly.pdf"
+        id="game-description"
+      >
+        Játékszabályok
+      </a>
+
       <h1 class="display">Set</h1>
 
       <section class="options">
@@ -51,20 +60,35 @@
           </div>
         </div>
 
-        <div class="option">
+        <div id="more-options" class="option">
           <span class="option-title">Egyéb</span>
-          <!-- TODO add other options -->
           <div class="more-options">
-            <label for="tellSet"></label>
-            <label for="showSet"></label>
-            <label for="plus3"></label>
+            <label for="tellSet">"Van e SET" gomb</label>
+            <input
+              class="extra-option"
+              type="checkbox"
+              name="tellSet"
+              id="tellSet"
+            />
+            <label for="showSet">"SET mutatása" gomb</label>
+            <input
+              class="extra-option"
+              type="checkbox"
+              name="showSet"
+              id="showSet"
+            />
+            <label for="plus3">Plusz 3 lapos kiegészítés</label>
+            <select class="extra-option" name="plus3" id="plus3">
+              <option value="AUTOMATIC">Automatikus</option>
+              <option value="MANUAL">Külön gomb</option>
+            </select>
           </div>
         </div>
 
         <div class="players">
           <h4>Játékosok</h4>
 
-          <ul id="players"></ul>
+          <ul id="player-list"></ul>
 
           <button id="add-player" class="secondary light">
             Játékos hozzáadása
@@ -74,11 +98,20 @@
       </section>
       <br />
 
-      <button id="startBtn" class="light">Kezdés</button>
+      <button id="start-btn" class="light">Kezdés</button>
     </section>
 
-    <script src="dist/app.js"></script>
-    <script src="dist/Player.js"></script>
-    <script src="dist/switch.js"></script>
+    <section id="game-page">
+      <span id="select-timer">10</span>
+      <div id="connected-players"></div>
+      <div id="deck"></div>
+      <h3 id="winner"></h3>
+    </section>
+
+    <script src="src/app.js"></script>
+    <script src="src/Timer.js"></script>
+    <script src="src/Player.js"></script>
+    <script src="src/switch.js"></script>
+    <script src="src/Set.js"></script>
   </body>
 </html>

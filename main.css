@@ -121,12 +121,29 @@ input {
   padding: 2rem 0;
 }
 
+#landing-page #game-description {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: white;
+  text-decoration: none;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+#landing-page #game-description:hover {
+  opacity: 1;
+}
+
 #landing-page h1 {
   font-size: 10vw;
 }
 
 .options {
   margin-top: 1rem;
+  width: 90%;
+  max-width: 320px;
 }
 
 .option {
@@ -141,6 +158,22 @@ input {
   font-family: Teko;
 }
 
+.more-options {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.more-options label {
+  margin: 1rem 0;
+  margin-right: 2rem;
+}
+
+.more-options input {
+  justify-self: flex-end;
+}
+
 .players {
   margin-top: 3rem;
   text-align: center;
@@ -150,12 +183,12 @@ input {
   margin-bottom: 1rem;
 }
 
-.players #players {
+.players #player-list {
   text-align: center;
   list-style: none;
 }
 
-.players #players .player {
+.players #player-list .player {
   align-items: center;
   position: relative;
   margin-top: 1.4rem;
@@ -173,7 +206,7 @@ input {
   }
 }
 
-.players #players .player .player-number {
+.players #player-list .player .player-number {
   position: absolute;
   left: -1rem;
   top: -1rem;
@@ -190,6 +223,103 @@ input {
   z-index: 2;
 }
 
-.players #players .player .player-name {
+.players #player-list .player .player-name {
   padding-left: 1rem;
+}
+
+/* GAME PAGE */
+
+section#game-page {
+  display: none;
+}
+
+section#game-page #select-timer {
+  font-size: 3rem;
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  opacity: 0.3;
+  color: var(--accent-red);
+  font-weight: 500;
+  font-family: Teko;
+}
+
+section#game-page #connected-players {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  margin: 2rem auto;
+}
+
+section#game-page #connected-players h4 {
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: 3px solid var(--accent-purple);
+  background: white;
+  margin: 0.5rem;
+  color: var(--accent-purple);
+  cursor: pointer;
+}
+
+section#game-page #connected-players h4.active {
+  background: var(--accent-purple);
+  color: white;
+}
+
+section#game-page #connected-players h4.disabled {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+section#game-page #deck {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  justify-content: center;
+  gap: 2rem;
+}
+
+section#game-page #deck .card {
+  text-align: center;
+  width: 150px;
+  height: 240px;
+  border-radius: 1rem;
+  background: #eaeaea;
+  box-shadow: 0 2px 0.5rem #0003;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section#game-page #deck .card.selected {
+  box-shadow: 0 0 1rem var(--accent-green);
+}
+
+section#game-page #deck .card svg.OVAL {
+  height: 80px;
+  width: 80px;
+  margin: auto;
+}
+
+section#game-page #deck .card svg.ROMBUS {
+  height: 60px;
+  width: 60px;
+  margin: auto;
+  transform: rotateZ(45deg);
+}
+
+section#game-page #deck .card svg.WAVY {
+  margin: auto;
+  width: 80px;
+  height: 40px;
+}
+
+section#game-page #deck .card svg:not(:first-child) {
+  margin-top: -20%;
+}
+
+section#game-page #winner {
+  text-align: center;
 }
