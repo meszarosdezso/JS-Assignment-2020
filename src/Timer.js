@@ -17,6 +17,7 @@ const startTimer = element => {
 
       const playerIndex = +element.id.replace('player-', '') - 1
       GAME_STATE.players[playerIndex].canSelect = false
+      GAME_STATE.players[playerIndex].score -= 1
 
       if (GAME_STATE.players.every(p => p.canSelect === false)) {
         GAME_STATE.players.forEach(p => (p.canSelect = true))
