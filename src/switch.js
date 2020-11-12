@@ -24,6 +24,12 @@ function handleSwitch({ target }, switchElem) {
   if (setting && value) {
     GAME_STATE[setting] = value
 
+    if (GAME_STATE.mode === 'CONTEST') {
+      GAME_STATE.extras.plus3 = 'AUTO'
+      GAME_STATE.extras.showSet = false
+      GAME_STATE.extras.tellSet = false
+    }
+
     updateUIWithState(GAME_STATE)
   }
 }

@@ -79,7 +79,7 @@
             />
             <label for="plus3">Plusz 3 lapos kiegészítés</label>
             <select class="extra-option" name="plus3" id="plus3">
-              <option value="AUTOMATIC">Automatikus</option>
+              <option value="AUTO">Automatikus</option>
               <option value="MANUAL">Külön gomb</option>
             </select>
           </div>
@@ -102,6 +102,17 @@
     </section>
 
     <section id="game-page">
+      <div id="wrong-set-popup">
+        <h4>A kiválasztott 3 lap nem alkot valid SET-et. 😔</h4>
+      </div>
+
+      <div id="has-set-popup"></div>
+
+      <div class="extra-buttons">
+        <button class="extra-button" id="isThereSetButton">Van set?</button>
+        <button class="extra-button" id="showSetButton">Set mutatása</button>
+        <button class="extra-button" id="plus3Button">+ 3 lap</button>
+      </div>
       <span id="select-timer">10</span>
       <div id="connected-players"></div>
       <div id="deck"></div>

@@ -233,6 +233,37 @@ section#game-page {
   display: none;
 }
 
+section#game-page #wrong-set-popup,
+#has-set-popup {
+  position: fixed;
+  top: -5rem;
+  opacity: 0;
+  background: var(--accent-red);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  transform: translateX(-50%);
+  left: 50%;
+  box-shadow: 0 0 0.5rem #0004;
+  transition: all 200ms ease-out;
+}
+
+section#game-page #has-set-popup {
+  background-color: var(--accent-green);
+}
+
+section#game-page #wrong-set-popup.active,
+#has-set-popup.active {
+  top: 2rem;
+  opacity: 1;
+}
+
+section#game-page .extra-buttons {
+  padding: 1rem;
+  margin: auto;
+  text-align: center;
+}
+
 section#game-page #select-timer {
   font-size: 3rem;
   position: fixed;
@@ -291,10 +322,15 @@ section#game-page #deck .card {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  transition: box-shadow 200ms ease-out;
 }
 
 section#game-page #deck .card.selected {
-  box-shadow: 0 0 1rem var(--accent-green);
+  box-shadow: 0 0 1rem var(--accent-green) !important;
+}
+
+section#game-page #deck .card.hint {
+  box-shadow: 0 0 2rem var(--accent-purple);
 }
 
 section#game-page #deck .card svg.OVAL {

@@ -62,6 +62,7 @@ function renderPlayingPlayers() {
     element.innerHTML = `${player.name} (<span class="player-score">${player.score}</span>)`
 
     element.addEventListener('click', _ => {
+      if (onePlayer(GAME_STATE)) return
       reset()
       startTimer(element)
 
@@ -73,6 +74,11 @@ function renderPlayingPlayers() {
     })
 
     connectedPlayers.appendChild(element)
+
+    if (onePlayer(GAME_STATE)) {
+      GAME_STATE.activePlayerIndex = 0
+      element.classList.add('active')
+    }
   }
 }
 

@@ -13,6 +13,8 @@
 //   { color: 'GREEN', content: 'STRIPED', number: 3, shape: 'WAVY' },
 // ]
 
+const SET_ERROR_POPUP = document.querySelector('#wrong-set-popup')
+
 const SVGs = {
   OVAL: (color, content) =>
     `<circle cx="40" cy="40" r="32" fill="${
@@ -57,16 +59,18 @@ const createStripePattern = color => `
 `
 
 function isSetValid(set) {
-  for (const key in set[0]) {
-    const setSet = new Set(set.map(s => s[key]))
-    if (setSet.size === 1 || setSet.size === 3) return true
-  }
-  return false
+  return Object.keys(set[0]).reduce((valid, prop) => {
+    const setSet = new Set(set.map(c => c[prop]))
+    return valid && (setSet.size === 1 || setSet.size === 3)
+  }, true)
 }
+
+const createCardId = card => Object.values(card).join('')
 
 function renderCard(card) {
   const cardElement = document.createElement('div')
   cardElement.classList.add('card')
+  cardElement.id = createCardId(card)
 
   cardElement.innerHTML = `<svg class="${card.shape}">
     ${createStripePattern(card.color)}
@@ -92,19 +96,28 @@ function renderCard(card) {
       if (GAME_STATE.selectedCards.length === 3) {
         if (isSetValid(GAME_STATE.selectedCards)) {
           GAME_STATE.players[GAME_STATE.activePlayerIndex].score += 1
+
+          const newDeck = GAME_STATE.deck.filter(
+            dcard =>
+              !GAME_STATE.selectedCards.some(
+                scard => JSON.stringify(scard) === JSON.stringify(dcard)
+              )
+          )
+
           updateUIWithState({
             ...GAME_STATE,
             started: true,
-            deck: GAME_STATE.deck.filter(
-              dcard =>
-                !GAME_STATE.selectedCards.some(
-                  scard => JSON.stringify(scard) === JSON.stringify(dcard)
-                )
-            ),
+            deck: newDeck,
           })
+
+          GAME_STATE.players.forEach(p => (p.canSelect = true))
         } else {
           GAME_STATE.players[GAME_STATE.activePlayerIndex].score -= 1
           GAME_STATE.players[GAME_STATE.activePlayerIndex].canSelect = false
+          SET_ERROR_POPUP.classList.add('active')
+          setTimeout(() => {
+            SET_ERROR_POPUP.classList.remove('active')
+          }, 4000)
         }
 
         if (GAME_STATE.players.every(p => !p.canSelect)) {
@@ -145,7 +158,7 @@ function createDeck(withContent) {
           ? contents.forEach(content =>
               deck.push({ color, shape, number, content })
             )
-          : deck.push({ color, shape, number })
+          : deck.push({ color, shape, number, content: 'EMPTY' })
       )
     )
   )
@@ -159,4 +172,30 @@ const shuffleDeck = (...deck) => {
     ;[deck[i], deck[j]] = [deck[j], deck[i]]
   }
   return deck
+}
+
+function isThereSet(state) {
+  const cardsOnTable = state.deck.slice(
+    0,
+    state.deck.length >= state.cardsOnTable
+      ? state.cardsOnTable
+      : state.deck.length
+  )
+
+  let hasSet = false
+  for (const card of cardsOnTable) {
+    for (const card2 of cardsOnTable) {
+      for (const card3 of cardsOnTable) {
+        if (
+          isSetValid([card, card2, card3]) &&
+          new Set([card, card2, card3]).size > 1
+        ) {
+          hasSet = true
+          break
+        }
+      }
+      if (hasSet) break
+    }
+  }
+  return hasSet
 }

@@ -13,6 +13,17 @@ const startTimer = element => {
       timerElem.innerHTML = +timerElem.innerHTML - 1
     } else {
       element.classList.remove('active')
+      element.classList.add('disabled')
+
+      const playerIndex = +element.id.replace('player-', '') - 1
+      GAME_STATE.players[playerIndex].canSelect = false
+
+      if (GAME_STATE.players.every(p => p.canSelect === false)) {
+        GAME_STATE.players.forEach(p => (p.canSelect = true))
+      }
+
+      renderPlayingPlayers()
+
       GAME_STATE.activePlayerIndex = -1
       reset()
     }
